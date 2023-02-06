@@ -133,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                            Expanded(
                              child: Image(
-                          image: AssetImage("assets/images/png/facebook.png"),
+                          image: const AssetImage("assets/images/png/facebook.png"),
                           fit: BoxFit.fill,
                           height: MySize.size52,
                           width: MySize.size52,
@@ -192,7 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   //const SizedBox(height: 30),
-                  Space.height(30),
+                  Space.height(20),
                 ],
               ),
             ),

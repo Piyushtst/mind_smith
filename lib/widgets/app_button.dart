@@ -56,3 +56,65 @@ class _AppButtonState extends State<AppButton> {
     );
   }
 }
+
+
+
+
+
+
+
+class AppButton1 extends StatefulWidget {
+  final String btnText;
+  Function? onTap;
+  Color? bttxtColor;
+  Color? bgColor;
+  double? width;
+  double? height;
+
+  AppButton1(
+      {Key? key,
+        required this.btnText,
+        this.onTap,
+        this.bttxtColor,
+        this.width,
+        this.height,
+        this.bgColor})
+      : super(key: key);
+
+  @override
+  State<AppButton1> createState() => _AppButton1State();
+}
+
+class _AppButton1State extends State<AppButton1> {
+  bool isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        if (widget.onTap != null) {
+          widget.onTap!();
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: textFieldBorderColor),
+            color:  widget.bgColor ?? primaryColor,
+            borderRadius: BorderRadius.circular(16)),
+        height: 56,
+        width: widget.width ?? double.infinity,
+        child: Center(
+            child: FittedBox(
+              child: AppText1(
+                text: widget.btnText,
+                size: 16,
+                txtColor: primaryWhite,
+                fontWeight: FontWeight.w600,
+                fontStyle: FontStyle.normal,
+                fontFamily: '',
+              ),
+            )),
+      ),
+    );
+  }
+}

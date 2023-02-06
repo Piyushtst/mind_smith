@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mind_smith/costants/app_color.dart';
 import 'package:mind_smith/costants/sizeConstant.dart';
-import 'package:mind_smith/screens/auth/verification_screen.dart';
+import 'package:mind_smith/screens/navigationbar/nav_screen.dart';
 import 'package:mind_smith/widgets/app_button.dart';
 import 'package:mind_smith/widgets/app_ritchtext.dart';
 import 'package:mind_smith/widgets/app_text.dart';
@@ -124,7 +124,7 @@ class _EnterOtpState extends State<EnterOtp> {
                   bttxtColor: primaryWhite,
                   bgColor: primaryColor.withOpacity(0.25),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Verification()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const NavScreen()));
                   }),
             ),
             Space.height(24),
