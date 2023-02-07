@@ -39,7 +39,7 @@ class _AppButtonState extends State<AppButton> {
         decoration: BoxDecoration(
             color:  widget.bgColor ?? primaryColor,
             borderRadius: BorderRadius.circular(16)),
-        height: 56,
+        height: 48,//56
         width: widget.width ?? double.infinity,
         child: Center(
             child: FittedBox(
@@ -101,14 +101,14 @@ class _AppButton1State extends State<AppButton1> {
             border: Border.all(color: textFieldBorderColor),
             color:  widget.bgColor ?? primaryColor,
             borderRadius: BorderRadius.circular(16)),
-        height: 56,
+        height: 48,
         width: widget.width ?? double.infinity,
         child: Center(
             child: FittedBox(
               child: AppText1(
                 text: widget.btnText,
                 size: 16,
-                txtColor: primaryWhite,
+                txtColor: blk,
                 fontWeight: FontWeight.w600,
                 fontStyle: FontStyle.normal,
                 fontFamily: '',

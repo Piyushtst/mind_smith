@@ -42,12 +42,17 @@ class _FilterScreenState extends State<FilterScreen> {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: MySize.getScaledSizeWidth(24.00)),
-            child: Center(
-              child: Image(
-                image: const AssetImage("assets/images/png/multiply.png"),
-                fit: BoxFit.contain,
-                height: MySize.size24,
-                width: MySize.size24,
+            child: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Center(
+                child: Image(
+                  image: const AssetImage("assets/images/png/multiply.png"),
+                  fit: BoxFit.contain,
+                  height: MySize.size24,
+                  width: MySize.size24,
+                ),
               ),
             ),
           ),
@@ -327,7 +332,7 @@ class _FilterScreenState extends State<FilterScreen> {
                           //Navigator.push(context, MaterialPageRoute(builder: (context) => const NavScreen()));
                         }),
                   ),
-                  SizedBox(width:16 ),
+                  const SizedBox(width:16 ),
                   Expanded(
                     child: AppButton(
                         btnText: "Apply",

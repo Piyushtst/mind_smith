@@ -24,6 +24,7 @@ class _OtpScreenState extends State<OtpScreen> {
     );
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             Expanded(
@@ -62,12 +63,12 @@ class _OtpScreenState extends State<OtpScreen> {
                       ),
                       Space.height(20),
                       AppText1(
-                        text: "E-mail",
+                        text: "Mobile",
                         size: 12.0,
                         txtColor: greyTextColor,
                         fontWeight: FontWeight.w500,
                       ),
-                      Space.height(4),
+                      Space.height(6),
                       AppTextField(
                         hintText: "Enter your phone number",
                         prefixIco: Padding(

@@ -28,7 +28,11 @@ class _BookConsultantionState extends State<BookConsultantion> {
         backgroundColor: Colors.white,
         leading: Padding(
           padding: EdgeInsets.only(left: MySize.getScaledSizeWidth(24.00)),
-          child: Icon(Icons.arrow_back_ios, color: textBlack, size: MySize.size20),
+          child: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+              child: Icon(Icons.arrow_back_ios, color: textBlack, size: MySize.size20)),
         ),
         title: Align(
           alignment: Alignment.centerLeft,
@@ -40,52 +44,61 @@ class _BookConsultantionState extends State<BookConsultantion> {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(24.00)),
-        child: Column(
-          children: [
-            Space.height(24),
-            const SearchTextField(),
-            Space.height(32),
-           Expanded(
-             child: Container(
-               child: ListView.builder(
-                 //physics: NeverScrollableScrollPhysics(),
-                 shrinkWrap: true,
-                 itemCount: consultant.length,
-                 scrollDirection: Axis.vertical,
-                 itemBuilder: (context, index) {
-                 return  InkWell(
-                   onTap: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
-                   },
-                   child: Container(
-                     alignment: Alignment.centerLeft,
-                     margin: EdgeInsets.only(right: MySize.getScaledSizeWidth(16.00), bottom: MySize.getScaledSizeWidth(8.00)),
-                     height: MySize.size131,
-                     width: double.infinity,
-                     decoration: BoxDecoration(
-                       //border: Border.all(color: textFieldBorderColor),
-                       borderRadius: BorderRadius.circular(14),
-                       image:  DecorationImage(image: AssetImage("${img[index]}"),fit: BoxFit.fill,),
-                     ),
-                     child:  Padding(
-                       padding:  EdgeInsets.only(left:MySize.getScaledSizeWidth(24.00) ),
-                       child: AppText1(
-                         text: "${consultant[index]}",
-                         size: 16.0,
-                         txtColor: textBlack,
-                         fontWeight: FontWeight.w700,
-                       ),
-                     ),
+      body: Column(
+        children: [
+          Space.height(24),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(24.00)),
+            child: const SearchTextField(),
+          ),
+          Space.height(32),
+         Expanded(
+           child: SingleChildScrollView(
+             child: Padding(
+               padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(24.00)),
+               child: Column(
+                 children: [
+                   Container(
+                     child: ListView.builder(
+                       physics: NeverScrollableScrollPhysics(),
+                       shrinkWrap: true,
+                       itemCount: consultant.length,
+                       scrollDirection: Axis.vertical,
+                       itemBuilder: (context, index) {
+                       return  InkWell(
+                         onTap: () {
+                           Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
+                         },
+                         child: Container(
+                           alignment: Alignment.centerLeft,
+                           margin: EdgeInsets.only(right: MySize.getScaledSizeWidth(16.00), bottom: MySize.getScaledSizeWidth(8.00)),
+                           height: MySize.size131,
+                           width: double.infinity,
+                           decoration: BoxDecoration(
+                             //border: Border.all(color: textFieldBorderColor),
+                             borderRadius: BorderRadius.circular(14),
+                             image:  DecorationImage(image: AssetImage("${img[index]}"),fit: BoxFit.fill,),
+                           ),
+                           child:  Padding(
+                             padding:  EdgeInsets.only(left:MySize.getScaledSizeWidth(24.00) ),
+                             child: AppText1(
+                               text: "${consultant[index]}",
+                               size: 16.0,
+                               txtColor: textBlack,
+                               fontWeight: FontWeight.w700,
+                             ),
+                           ),
+                         ),
+                       );
+                     },),
                    ),
-                 );
-               },),
+                 ],
+               ),
              ),
            ),
-
-          ],
-        ),
+         ),
+          const botmbar(),
+        ],
       ),
     );
   }

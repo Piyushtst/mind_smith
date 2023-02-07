@@ -24,6 +24,7 @@ class _EnterOtpState extends State<EnterOtp> {
     );
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             Expanded(
@@ -62,12 +63,12 @@ class _EnterOtpState extends State<EnterOtp> {
                       ),
                       Space.height(20),
                       AppText1(
-                        text: "E-mail",
+                        text: "Mobile",
                         size: 12.0,
                         txtColor: greyTextColor,
                         fontWeight: FontWeight.w500,
                       ),
-                      Space.height(4),
+                      Space.height(6),
                       AppTextField(
                         hintText: "Enter your phone number",
                         prefixIco: Padding(
@@ -82,7 +83,7 @@ class _EnterOtpState extends State<EnterOtp> {
                         tcPadding: 16,
                         bcPadding: 16,
                       ),
-                      Space.height(4),
+                      Space.height(6),
                       Align(
                         alignment: Alignment.topRight,
                           child: AppRitchText(text: "Wrong number?", text2: "  Change Number")),
@@ -93,7 +94,7 @@ class _EnterOtpState extends State<EnterOtp> {
                         txtColor: greyTextColor,
                         fontWeight: FontWeight.w500,
                       ),
-
+                      Space.height(6),
                       AppTextField(
                         hintText: "Enter OTP",
                         prefixIco: Padding(
@@ -108,7 +109,7 @@ class _EnterOtpState extends State<EnterOtp> {
                         tcPadding: 16,
                         bcPadding: 16,
                       ),
-                      Space.height(4),
+                      Space.height(6),
                       Align(
                           alignment: Alignment.topRight,
                           child: AppRitchText(text: "Didn’t received OTP,", text2: "  Resend OTP")),

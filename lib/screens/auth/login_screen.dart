@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mind_smith/costants/app_color.dart';
-import 'package:mind_smith/costants/app_color.dart';
 import 'package:mind_smith/costants/sizeConstant.dart';
 import 'package:mind_smith/screens/auth/sign_up_screen.dart';
 import 'package:mind_smith/widgets/app_button.dart';
@@ -17,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isVisible = false;
+  bool isVisible1 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -72,15 +72,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   AppTextField(
                     hintText: "Enter Password",
                     prefixIco: Icon(Icons.lock_outline, color: greyColor, size: MySize.size26),
-                    obscureText: isVisible,
+                    obscureText: isVisible1,
                     maxLines: 1,
                     iconButton: InkWell(
                         onTap: () {
-                          isVisible = !isVisible;
+                          isVisible1 = !isVisible1;
                           setState(() {});
                         },
                         child: Icon(
-                          isVisible ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                          isVisible1 ? Icons.visibility_off_outlined : Icons.visibility_outlined,
                           color: greyColor,
                           size: MySize.size26,
                         )),

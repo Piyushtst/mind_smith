@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mind_smith/costants/app_color.dart';
 import 'package:mind_smith/costants/sizeConstant.dart';
 import 'package:mind_smith/screens/home/filter_screen.dart';
+import 'package:mind_smith/screens/profile/profile_screen.dart';
 import 'package:mind_smith/widgets/app_text.dart';
-import 'package:mind_smith/widgets/search_textfield.dart';
 
 class FilterOrShortScreen extends StatefulWidget {
   const FilterOrShortScreen({Key? key}) : super(key: key);
@@ -13,7 +13,15 @@ class FilterOrShortScreen extends StatefulWidget {
 }
 
 class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
-  List img1=["assets/images/png/profile1.png","assets/images/png/profile3.png","assets/images/png/profile4.png","assets/images/png/profil.png","assets/images/png/profile3.png",];
+  List img1 = [
+    "assets/images/png/profile1.png",
+    "assets/images/png/profile3.png",
+    "assets/images/png/profile4.png",
+    "assets/images/png/profil.png",
+    "assets/images/png/profile3.png",
+  ];
+    bool isFavorit=false;
+    int inx=0;
   @override
   Widget build(BuildContext context) {
     MySize().init(
@@ -26,7 +34,11 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
         backgroundColor: Colors.white,
         leading: Padding(
           padding: EdgeInsets.only(left: MySize.getScaledSizeWidth(24.00)),
-          child: Icon(Icons.arrow_back_ios, color: textBlack, size: MySize.size20),
+          child: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+              child: Icon(Icons.arrow_back_ios, color: textBlack, size: MySize.size20)),
         ),
         title: Align(
           alignment: Alignment.centerLeft,
@@ -71,7 +83,10 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Image(image:  AssetImage("${img1[index]}"), height: MySize.size60,),
+                                      Image(
+                                        image: AssetImage("${img1[index]}"),
+                                        height: MySize.size60,
+                                      ),
                                       Column(
                                         children: [
                                           AppText1(
@@ -91,8 +106,22 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
                                           ),
                                         ],
                                       ),
-                                      Icon(Icons.favorite_border, color: textBlack, size: MySize.size30,)
-
+                                      InkWell(
+                                        onTap: () {
+                                          inx=index;
+                                          setState(() {
+                                          });
+                                        },
+                                        child: inx==index ?Icon(
+                                          Icons.favorite,
+                                          color: Colors.red,
+                                          size: MySize.size30,
+                                        ):Icon(
+                                          Icons.favorite_border,
+                                          color: textBlack,
+                                          size: MySize.size30,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   Space.height(16),
@@ -146,22 +175,28 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
                                               txtColor: blk,
                                               fontWeight: FontWeight.w400,
                                             ),
-                                            Space.height(16),],
+                                            Space.height(16),
+                                          ],
                                         ),
                                       ),
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
 
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: primaryColor),
-                                          borderRadius: BorderRadius.circular(8),
-                                        ),
-                                        child:  Padding(
-                                          padding:  EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(16.00),vertical:MySize.getScaledSizeWidth(2.00) ),
-                                          child: AppText1(
-                                            text: "View",
-                                            size: 14.0,
-                                            txtColor: primaryColor,
-                                            fontWeight: FontWeight.w500,
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: primaryColor),
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(16.00), vertical: MySize.getScaledSizeWidth(2.00)),
+                                            child: AppText1(
+                                              text: "View",
+                                              size: 14.0,
+                                              txtColor: primaryColor,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -171,9 +206,9 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
                               ),
                             ),
                           );
-                        },),
+                        },
+                      ),
                     ),
-
                   ],
                 ),
               ),
@@ -183,11 +218,11 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
             height: 50,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color:Colors.white,
+              color: Colors.white,
               border: Border(top: BorderSide(color: textFieldBorderColor, width: 1)),
             ),
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(70.00)),
+              padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(70.00)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -216,20 +251,25 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
                     width: 1,
                     color: greyShade,
                   ),
-                  Row(
-                    children: [
-                      Image(
-                        image: const AssetImage("assets/images/png/sort.png"),
-                        height: MySize.size16,
-                        width: MySize.size16,
-                      ),
-                      AppText1(
-                        text: " Sort",
-                        size: 14.0,
-                        txtColor: blk,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ],
+                  InkWell(
+                    onTap: () {
+                      sortSheet(context);
+                    },
+                    child: Row(
+                      children: [
+                        Image(
+                          image: const AssetImage("assets/images/png/sort.png"),
+                          height: MySize.size16,
+                          width: MySize.size16,
+                        ),
+                        AppText1(
+                          text: " Sort",
+                          size: 14.0,
+                          txtColor: blk,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -239,4 +279,303 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
       ),
     );
   }
+
+  makeDismissibl({required Widget child, required BuildContext context}) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: child,
+      );
+  late String radioVal;
+  bool isSelect=false;
+  bool isSelect1=false;
+  Future sortSheet(BuildContext context) async {
+    var radioSelected = 1;
+    return showModalBottomSheet(
+      enableDrag: true,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      context: context,
+      isDismissible: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return makeDismissibl(
+            context: context,
+            child: DraggableScrollableSheet(
+              initialChildSize: 0.38,
+              minChildSize: 0.3,
+              maxChildSize: 1,
+              builder: (context, scrollController) {
+                return Builder(
+                  builder: (context) {
+                    return Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(32.00)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Space.height(16),
+                            Center(
+                              child: Container(
+                                height: 4,
+                                width: 40,
+                                decoration: BoxDecoration(color: textFieldBorderColor, borderRadius: BorderRadius.circular(10)),
+                              ),
+                            ),
+                            Space.height(16),
+                            AppText1(
+                              text: "Sort by",
+                              size: 16.0,
+                              txtColor: blk,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            Space.height(16),
+                            Container(
+                              height: 44,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: textFieldBorderColor),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.only(left: MySize.getScaledSizeWidth(16.00)),
+                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                  AppText1(
+                                    text: "Relavance",
+                                    size: 14.0,
+                                    txtColor: blk,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                  Radio(
+                                    value: 1,
+                                    groupValue: radioSelected,
+                                    activeColor: greyColor,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        radioSelected = value!;
+                                        radioVal = 'male';
+                                      });
+                                    },
+                                  ),
+                                ]),
+                              ),
+                            ),
+                            Space.height(16),
+                            Container(
+                              height: 44,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: textFieldBorderColor),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.only(left: MySize.getScaledSizeWidth(16.00)),
+                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                  AppText1(
+                                    text: "Relavance",
+                                    size: 14.0,
+                                    txtColor: blk,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                  Radio(
+                                    value: 2,
+                                    groupValue: radioSelected,
+                                    activeColor: greyColor,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        radioSelected = value!;
+                                        radioVal = 'female';
+                                      });
+                                    },
+                                  ),
+                                ]),
+                              ),
+                            ),
+                            Space.height(16),
+                            AppText1(
+                              text: "Charges ",
+                              size: 16.0,
+                              txtColor: blk,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            Space.height(16),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: InkWell(
+                                    onTap: () {
+                                      isSelect=!isSelect;
+                                      setState(() {
+                                        isSelect1=false;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 44,
+                                      //width: 100,
+                                      decoration:  BoxDecoration(
+                                        color: isSelect?Colors.black12.withOpacity(0.04):Colors.white,
+                                        border: Border.all(color: isSelect?yelowShade:textFieldBorderColor),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: AppText1(
+                                          text: "low to high ",
+                                          size: 14.0,
+                                          txtColor: blk,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: InkWell(
+                                    onTap: () {
+                                      isSelect1=!isSelect;
+                                      setState(() {
+                                        isSelect=false;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 44,
+                                      //width: 100,
+                                      decoration:  BoxDecoration(
+                                        color: isSelect1?Colors.black12.withOpacity(0.04):Colors.white,
+                                        border: Border.all(color: isSelect1?yelowShade:textFieldBorderColor),
+                                        borderRadius: const BorderRadius.only(
+                                          bottomRight: Radius.circular(10),
+                                          topRight:  Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: AppText1(
+                                          text: "high to low ",
+                                          size: 14.0,
+                                          txtColor: blk,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ));
+      },
+    );
+  }
 }
+
+/*Future<void> sortSheet(BuildContext context) async {
+  int radioSelected = 1;
+  return showModalBottomSheet(
+    enableDrag: true,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    context: context,
+    isDismissible: true,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(20),
+      ),
+    ),
+    builder: (BuildContext context) {
+      return makeDismissibl(
+          context: context,
+          child: DraggableScrollableSheet(
+            initialChildSize: 0.45,
+            minChildSize: 0.3,
+            maxChildSize: 1,
+            builder: (context, scrollController) {
+              return Builder(
+                builder: (context) {
+                  return Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(32.00)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                         children: [
+                           Space.height(16),
+                           Center(
+                             child: Container(
+                               height: 4,
+                               width: 40,
+                               decoration: BoxDecoration(
+                                 color: textFieldBorderColor,
+                                 borderRadius: BorderRadius.circular(10)
+                               ),
+                             ),
+                           ),
+                           Space.height(16),
+                           AppText1(
+                             text: "Sort by",
+                             size: 16.0,
+                             txtColor: blk,
+                             fontWeight: FontWeight.w500,
+                           ),
+                           Space.height(16),
+                           Container(
+                             height: 44,
+                             width: double.infinity,
+                             decoration: BoxDecoration(
+                               border: Border.all(color: textFieldBorderColor),
+                               borderRadius: BorderRadius.circular(8),
+                             ),
+                             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                               AppText1(
+                                 text: "Relavance",
+                                 size: 14.0,
+                                 txtColor: blk,
+                                 fontWeight: FontWeight.w400,
+                               ),
+                               Radio(
+                                 value: 1,
+                                 groupValue: radioSelected,
+                                 activeColor:primaryColor,
+                                 onChanged: (value) {
+                                   setState(() {
+                                     radioSelected = value!;
+                                     radioVal = 'male';
+                                   });
+                                 },
+                               ),
+                             ]),
+                           ),
+                         ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ));
+    },
+  );
+}*/

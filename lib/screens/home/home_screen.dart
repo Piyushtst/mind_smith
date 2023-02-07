@@ -16,6 +16,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List img3=["assets/images/png/profil.png","assets/images/png/profile5.png","assets/images/png/profile4.png","assets/images/png/profil.png","assets/images/png/profile3.png",];
+
   @override
   Widget build(BuildContext context) {
     MySize().init(
@@ -70,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SearchTextField(),
                   Space.height(32),
                   Container(
-                    // height: MySize.size160,
+                     //height: MySize.size280,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: textFieldBorderColor),
@@ -83,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       child: Column(
                         children: [
-                          Space.height(16),
+                          Space.height(20),
                           AppText1(
                             text: "Reach out to us for any issue ",
                             size: 20.0,
@@ -106,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             txtAlign: TextAlign.center,
                             maxLine: 3,
                           ),
-                          Space.height(17),
+                          Space.height(20),
                           AppButton(
                               height: MySize.size48,
                               btnText: "Book Consultation",
@@ -115,12 +117,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               onTap: () {
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => const BookConsultantion()));
                               }),
-                          Space.height(16),
+                          Space.height(20),
                         ],
                       ),
                     ),
                   ),
-                  Space.height(32),
+                  Space.height(40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -139,112 +141,109 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   Space.height(16),
-
-
                 ],
               ),
-              Expanded(
-                child: Container(
-                  //height: 240,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 6,
-                    itemBuilder: (context, index) {
-                      return Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(right: MySize.getScaledSizeWidth(16.00),bottom: MySize.getScaledSizeWidth(4.00)),
-                          // height: 300,
-                          width: MySize.size180,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: textFieldBorderColor),
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(16.00), vertical: MySize.getScaledSizeHeight(16.00)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image(image: const AssetImage("assets/images/png/profil.png"), height: MySize.size60,),
-                                    Icon(Icons.favorite_border, color: textBlack, size: MySize.size30,)
+              Flexible(
+                fit: FlexFit.loose,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: img3.length,
+                  itemBuilder: (context, index) {
+                    return FittedBox(
+                      child: Container(
+                        margin: EdgeInsets.only(right: MySize.getScaledSizeWidth(16.00),bottom: MySize.getScaledSizeWidth(4.00)),
+                        // height: 300,
+                        //width: MySize.size180,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: textFieldBorderColor),
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(16.00), vertical: MySize.getScaledSizeHeight(16.00)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Image(image:  AssetImage("${img3[index]}"), height: MySize.size60,),
+                                  Icon(Icons.favorite_border, color: textBlack, size: MySize.size30,)
 
-                                  ],
-                                ),
-                                Space.height(16),
-                                AppText1(
-                                  text: "John Doe name • 5Y",
+                                ],
+                              ),
+                              Space.height(16),
+                              AppText1(
+                                text: "John Doe name • 5Y",
+                                size: 14.0,
+                                txtColor: blk,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              Space.height(4),
+                              FittedBox(
+                                child: AppText1(
+                                  text: "English • Kanadda • Tamil",
                                   size: 14.0,
-                                  txtColor: blk,
+                                  txtColor: greyColor,
                                   fontWeight: FontWeight.w500,
                                 ),
-                                Space.height(4),
-                                FittedBox(
-                                  child: AppText1(
-                                    text: "English • Kanadda • Tamil",
+                              ),
+                              Space.height(16),
+                              Row(
+                                children: [
+                                  Container(
+                                    height: MySize.size20,
+                                    width: 2,
+                                    color: primaryColor,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  AppText1(
+                                    text: "Neurologist",
                                     size: 14.0,
-                                    txtColor: greyColor,
+                                    txtColor: primaryColor,
                                     fontWeight: FontWeight.w500,
                                   ),
-                                ),
-                                Space.height(16),
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: MySize.size20,
-                                      width: 2,
-                                      color: primaryColor,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    AppText1(
-                                      text: "Neurologist",
-                                      size: 14.0,
-                                      txtColor: primaryColor,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ],
-                                ),
-                                Space.height(8),
-                                AppText1(
-                                  text: "MBBS\nDNB - Neurosurgery",
-                                  size: 12.0,
-                                  txtColor: blk,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                Space.height(16),
-                                Row(
-                                  children: [
-                                    Image(
-                                      image: const AssetImage("assets/images/png/star.png"),
-                                      width: MySize.size14,
-                                      height: MySize.size14,
-                                      fit: BoxFit.fill,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    AppText1(
-                                      text: "4.64",
-                                      size: 14.0,
-                                      txtColor: yellowColor,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    AppText1(
-                                      text: "(27)",
-                                      size: 14.0,
-                                      txtColor: blk,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                    Space.height(16),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                ],
+                              ),
+                              Space.height(8),
+                              AppText1(
+                                text: "MBBS\nDNB - Neurosurgery",
+                                size: 12.0,
+                                txtColor: blk,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              Space.height(16),
+                              Row(
+                                children: [
+                                  Image(
+                                    image: const AssetImage("assets/images/png/star.png"),
+                                    width: MySize.size14,
+                                    height: MySize.size14,
+                                    fit: BoxFit.fill,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  AppText1(
+                                    text: "4.64",
+                                    size: 14.0,
+                                    txtColor: yellowColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  AppText1(
+                                    text: "(27)",
+                                    size: 14.0,
+                                    txtColor: blk,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                  Space.height(16),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                      );
-                    },),
-                ),
+                      ),
+                    );
+                  },),
               )
 
             ],

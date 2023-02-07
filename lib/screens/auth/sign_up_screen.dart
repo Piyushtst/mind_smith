@@ -24,6 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             Expanded(
@@ -60,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         txtColor: greyTextColor,
                         fontWeight: FontWeight.w500,
                       ),
-                      Space.height(4),
+                      Space.height(6),
                       AppTextField(
                         hintText: "Enter your first name",
                         prefixIco: Padding(
@@ -82,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         txtColor: greyTextColor,
                         fontWeight: FontWeight.w500,
                       ),
-                      Space.height(4),
+                      Space.height(6),
                       AppTextField(
                         hintText: "Enter your last name",
                         prefixIco: Padding(
@@ -104,7 +105,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         txtColor: greyTextColor,
                         fontWeight: FontWeight.w500,
                       ),
-                      Space.height(4),
+                      Space.height(6),
                       AppTextField(
                         hintText: "Enter your e-mail here",
                         prefixIco: Padding(
@@ -128,7 +129,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       Space.height(4),
                       AppTextField(
-                        hintText: "Enter your Email Address",
+                        hintText: "Enter Password",
                         obscureText: isVisible,
                         maxLines: 1,
                         prefixIco: Padding(
