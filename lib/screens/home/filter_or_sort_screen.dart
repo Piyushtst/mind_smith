@@ -307,7 +307,7 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
         return makeDismissibl(
             context: context,
             child: DraggableScrollableSheet(
-              initialChildSize: 0.38,
+              initialChildSize:0.38,
               minChildSize: 0.3,
               maxChildSize: 1,
               builder: (context, scrollController) {
@@ -322,159 +322,162 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(32.00)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Space.height(16),
-                            Center(
-                              child: Container(
-                                height: 4,
-                                width: 40,
-                                decoration: BoxDecoration(color: textFieldBorderColor, borderRadius: BorderRadius.circular(10)),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Space.height(16),
+                              Center(
+                                child: Container(
+                                  height: 4,
+                                  width: 40,
+                                  decoration: BoxDecoration(color: textFieldBorderColor, borderRadius: BorderRadius.circular(10)),
+                                ),
                               ),
-                            ),
-                            Space.height(16),
-                            AppText1(
-                              text: "Sort by",
-                              size: 16.0,
-                              txtColor: blk,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            Space.height(16),
-                            Container(
-                              height: 44,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: textFieldBorderColor),
-                                borderRadius: BorderRadius.circular(8),
+                              Space.height(16),
+                              AppText1(
+                                text: "Sort by",
+                                size: 16.0,
+                                txtColor: blk,
+                                fontWeight: FontWeight.w500,
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.only(left: MySize.getScaledSizeWidth(16.00)),
-                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                  AppText1(
-                                    text: "Relavance",
-                                    size: 14.0,
-                                    txtColor: blk,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  Radio(
-                                    value: 1,
-                                    groupValue: radioSelected,
-                                    activeColor: greyColor,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        radioSelected = value!;
-                                        radioVal = 'male';
-                                      });
-                                    },
-                                  ),
-                                ]),
+                              Space.height(16),
+                              Container(
+                                height: 44,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: textFieldBorderColor),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: MySize.getScaledSizeWidth(16.00)),
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                    AppText1(
+                                      text: "Relavance",
+                                      size: 14.0,
+                                      txtColor: blk,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    Radio(
+                                      value: 1,
+                                      groupValue: radioSelected,
+                                      activeColor: greyColor,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          radioSelected = value!;
+                                          radioVal = 'male';
+                                        });
+                                      },
+                                    ),
+                                  ]),
+                                ),
                               ),
-                            ),
-                            Space.height(16),
-                            Container(
-                              height: 44,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: textFieldBorderColor),
-                                borderRadius: BorderRadius.circular(8),
+                              Space.height(16),
+                              Container(
+                                height: 44,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: textFieldBorderColor),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: MySize.getScaledSizeWidth(16.00)),
+                                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                    AppText1(
+                                      text: "Relavance",
+                                      size: 14.0,
+                                      txtColor: blk,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    Radio(
+                                      value: 2,
+                                      groupValue: radioSelected,
+                                      activeColor: greyColor,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          radioSelected = value!;
+                                          radioVal = 'female';
+                                        });
+                                      },
+                                    ),
+                                  ]),
+                                ),
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.only(left: MySize.getScaledSizeWidth(16.00)),
-                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                  AppText1(
-                                    text: "Relavance",
-                                    size: 14.0,
-                                    txtColor: blk,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  Radio(
-                                    value: 2,
-                                    groupValue: radioSelected,
-                                    activeColor: greyColor,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        radioSelected = value!;
-                                        radioVal = 'female';
-                                      });
-                                    },
-                                  ),
-                                ]),
+                              Space.height(16),
+                              AppText1(
+                                text: "Charges ",
+                                size: 16.0,
+                                txtColor: blk,
+                                fontWeight: FontWeight.w500,
                               ),
-                            ),
-                            Space.height(16),
-                            AppText1(
-                              text: "Charges ",
-                              size: 16.0,
-                              txtColor: blk,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            Space.height(16),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: InkWell(
-                                    onTap: () {
-                                      isSelect=!isSelect;
-                                      setState(() {
-                                        isSelect1=false;
-                                      });
-                                    },
-                                    child: Container(
-                                      height: 44,
-                                      //width: 100,
-                                      decoration:  BoxDecoration(
-                                        color: isSelect?Colors.black12.withOpacity(0.04):Colors.white,
-                                        border: Border.all(color: isSelect?yelowShade:textFieldBorderColor),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          bottomLeft: Radius.circular(10),
+                              Space.height(16),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        isSelect=!isSelect;
+                                        setState(() {
+                                          isSelect1=false;
+                                        });
+                                      },
+                                      child: Container(
+                                        height: 44,
+                                        //width: 100,
+                                        decoration:  BoxDecoration(
+                                          color: isSelect?Colors.black12.withOpacity(0.04):Colors.white,
+                                          border: Border.all(color: isSelect?yelowShade:textFieldBorderColor),
+                                          borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10),
+                                          ),
                                         ),
-                                      ),
-                                      child: Center(
-                                        child: AppText1(
-                                          text: "low to high ",
-                                          size: 14.0,
-                                          txtColor: blk,
-                                          fontWeight: FontWeight.w400,
+                                        child: Center(
+                                          child: AppText1(
+                                            text: "low to high ",
+                                            size: 14.0,
+                                            txtColor: blk,
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: InkWell(
-                                    onTap: () {
-                                      isSelect1=!isSelect;
-                                      setState(() {
-                                        isSelect=false;
-                                      });
-                                    },
-                                    child: Container(
-                                      height: 44,
-                                      //width: 100,
-                                      decoration:  BoxDecoration(
-                                        color: isSelect1?Colors.black12.withOpacity(0.04):Colors.white,
-                                        border: Border.all(color: isSelect1?yelowShade:textFieldBorderColor),
-                                        borderRadius: const BorderRadius.only(
-                                          bottomRight: Radius.circular(10),
-                                          topRight:  Radius.circular(10),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        isSelect1=!isSelect;
+                                        setState(() {
+                                          isSelect=false;
+                                        });
+                                      },
+                                      child: Container(
+                                        height: 44,
+                                        //width: 100,
+                                        decoration:  BoxDecoration(
+                                          color: isSelect1?Colors.black12.withOpacity(0.04):Colors.white,
+                                          border: Border.all(color: isSelect1?yelowShade:textFieldBorderColor),
+                                          borderRadius: const BorderRadius.only(
+                                            bottomRight: Radius.circular(10),
+                                            topRight:  Radius.circular(10),
+                                          ),
                                         ),
-                                      ),
-                                      child: Center(
-                                        child: AppText1(
-                                          text: "high to low ",
-                                          size: 14.0,
-                                          txtColor: blk,
-                                          fontWeight: FontWeight.w400,
+                                        child: Center(
+                                          child: AppText1(
+                                            text: "high to low ",
+                                            size: 14.0,
+                                            txtColor: blk,
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                              Space.height(16),
+                            ],
+                          ),
                         ),
                       ),
                     );

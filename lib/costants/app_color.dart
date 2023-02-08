@@ -19,6 +19,7 @@ const Color ligntPink=Color(0xFFEB7E41);
 const Color blkShade=Color(0xFF363636);
 const Color lightGrey=Color(0xFFE7E9EC);
 const Color greenShade=Color(0xFF07bc1d);
+const Color redColor=Color(0xFFC6111C);
 
 Color color = const Color.fromRGBO(235, 190, 30, 0.25);
 

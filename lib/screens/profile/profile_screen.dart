@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mind_smith/costants/app_color.dart';
 import 'package:mind_smith/costants/sizeConstant.dart';
+import 'package:mind_smith/screens/booking_process/add_photo_id.dart';
 import 'package:mind_smith/widgets/app_button.dart';
 import 'package:mind_smith/widgets/app_text.dart';
 
@@ -12,6 +13,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
   @override
   Widget build(BuildContext context) {
     MySize().init(
@@ -47,16 +49,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Space.height(32),
-              IntrinsicHeight(
+             IntrinsicHeight(
                 child: Row(
                   //crossAxisAlignment: CrossAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Image(
-                      image: const AssetImage("assets/images/png/profileinfo.png"),
-                      height: MySize.size100,
-                      width: MySize.size120,
-                      fit: BoxFit.fill,
+                    InkWell(
+                      onTap: () {
+
+                      },
+                      child: Image(
+                        image: const AssetImage("assets/images/png/profileinfo.png"),
+                        height: MySize.size100,
+                        width: MySize.size120,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     SizedBox(width: MySize.size20),
                     Column(
@@ -840,13 +847,190 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   bttxtColor: primaryWhite,
                   bgColor: primaryColor,
                   onTap: () {
+                    BookNow(context);
                    // Navigator.push(context, MaterialPageRoute(builder: (context) => const EnterOtp()));
                   }),
               Space.height(24),
+
             ],
           ),
         ),
       ),
     );
   }
+}
+
+
+Future BookNow(BuildContext context) {
+  return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+              borderRadius:
+              BorderRadius.circular(20.0)), //this right here
+          child: Container(
+            height: MySize.size330,//MySize.getScaledSizeHeight(335.00)
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(24.00)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Space.height(24),
+                  Row(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Expanded(child: SizedBox()),
+                      Center(
+                        child: Image(
+                          image:  const AssetImage("assets/images/png/booknow.png"),
+                          height: MySize.size80,
+                          width: MySize.size80,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            alignment: Alignment.topRight,
+                            child: Image(
+                              image: const AssetImage("assets/images/png/roundcross.png"),
+                              height: MySize.size20,
+                              width: MySize.size20,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Space.height(24),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPhotoID()));
+                    },
+                    child: AppText1(
+                      text: "Fill the details",
+                      size: 16.0,
+                      txtColor: blk,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Space.height(14),
+                  AppText1(
+                    text: "As per govt. of India Mandate, we need following information before the first tele-consultation.",
+                    size: 14.0,
+                    txtColor: blk,
+                    fontWeight: FontWeight.w400,
+                    txtAlign: TextAlign.center,
+                    maxLine: 3,
+                  ),
+                  Space.height(24),
+                  AppButton(
+                      btnText: "Fill details",
+                      bttxtColor: primaryWhite,
+                      bgColor: primaryColor,
+                      onTap: () {
+                        FirstConsultation(context);
+                         //Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPhotoID()));
+                      }),
+                  Space.height(24),
+                ],
+              ),
+            ),
+          ),
+        );
+      });
+}
+
+
+Future FirstConsultation(BuildContext context) {
+  return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+              borderRadius:
+              BorderRadius.circular(20.0)), //this right here
+          child: Container(
+            height: MySize.size330,//MySize.getScaledSizeHeight(335.00)
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(24.00)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Space.height(24),
+                  Row(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Expanded(child: SizedBox()),
+                      Center(
+                        child: Image(
+                          image:  const AssetImage("assets/images/png/Firstconsultation.png"),
+                          height: MySize.size80,
+                          width: MySize.size80,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            alignment: Alignment.topRight,
+                            child: Image(
+                              image: const AssetImage("assets/images/png/roundcross.png"),
+                              height: MySize.size20,
+                              width: MySize.size20,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Space.height(24),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPhotoID()));
+                    },
+                    child: AppText1(
+                      text: "First consultation",
+                      size: 16.0,
+                      txtColor: blk,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Space.height(14),
+                  AppText1(
+                    text: "This is your first consultation, hence it\n should be\nat least 45 min long",
+                    size: 14.0,
+                    txtColor: blk,
+                    fontWeight: FontWeight.w400,
+                    txtAlign: TextAlign.center,
+                    maxLine: 3,
+                  ),
+                  Space.height(24),
+                  AppButton(
+                      btnText: "Proceed",
+                      bttxtColor: primaryWhite,
+                      bgColor: primaryColor,
+                      onTap: () {
+
+                        //BookNow(context);
+                         //Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPhotoID()));
+                      }),
+                  Space.height(24),
+                ],
+              ),
+            ),
+          ),
+        );
+      });
 }

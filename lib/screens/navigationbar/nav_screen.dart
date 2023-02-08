@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mind_smith/costants/app_color.dart';
 import 'package:mind_smith/costants/sizeConstant.dart';
+import 'package:mind_smith/screens/apoinment/apoinment.dart';
 import 'package:mind_smith/screens/home/home_screen.dart';
 import 'package:mind_smith/widgets/app_text.dart';
 
@@ -21,7 +22,7 @@ class _NavScreenState extends State<NavScreen> {
     super.initState();
   }*/
   int currentIndex = 0;
-  List pages = [  const HomeScreen(),  Container(),Container(),Container(),];
+  List pages = [  const HomeScreen(),  const AponmentScreen(),Container(),Container(),];
   @override
   Widget build(BuildContext context) {
     MySize().init(
