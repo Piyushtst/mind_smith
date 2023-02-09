@@ -20,6 +20,9 @@ const Color blkShade=Color(0xFF363636);
 const Color lightGrey=Color(0xFFE7E9EC);
 const Color greenShade=Color(0xFF07bc1d);
 const Color redColor=Color(0xFFC6111C);
+const Color dividerColor=Color(0xFFEFEFEF);
+const Color textgreyColor=Color(0xFF595959);
+const Color bgWhite=Color(0xFFFFFFFF);
 
 Color color = const Color.fromRGBO(235, 190, 30, 0.25);
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mind_smith/costants/app_color.dart';
 import 'package:mind_smith/costants/sizeConstant.dart';
+import 'package:mind_smith/screens/call_details/assessment_screen.dart';
+import 'package:mind_smith/screens/my_cart/cart_screen.dart';
 import 'package:mind_smith/widgets/app_button.dart';
 import 'package:mind_smith/widgets/app_text.dart';
 
@@ -233,7 +235,7 @@ class _CallDetailScreenState extends State<CallDetailScreen> {
                         bttxtColor: Colors.black,
                         bgColor: primaryColor,
                         onTap: () {
-                          // Navigator.push(context, MaterialPageRoute(builder: (context) => const CallDetailScreen()));
+                           Navigator.push(context, MaterialPageRoute(builder: (context) => const AssessmentScreen()));
                         }),
                     Space.height(16),
                   ]),
@@ -403,7 +405,7 @@ class _CallDetailScreenState extends State<CallDetailScreen> {
                             bttxtColor: primaryWhite,
                             bgColor: primaryColor,
                             onTap: () {
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) => const EnterOtp()));
+                               Navigator.push(context, MaterialPageRoute(builder: (context) => const CartScreen()));
                             }),
                         Container(
                           alignment: Alignment.center,

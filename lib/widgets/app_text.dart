@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mind_smith/costants/app_color.dart';
 
 class AppText extends StatelessWidget {
   final String text;

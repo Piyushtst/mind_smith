@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mind_smith/costants/app_color.dart';
 import 'package:mind_smith/costants/sizeConstant.dart';
 import 'package:mind_smith/screens/home/filter_screen.dart';
-import 'package:mind_smith/screens/profile/profile_screen.dart';
+import 'package:mind_smith/screens/profile/profile_info_screen.dart';
 import 'package:mind_smith/widgets/app_text.dart';
 
 class FilterOrShortScreen extends StatefulWidget {
@@ -181,7 +181,7 @@ class _FilterOrShortScreenState extends State<FilterOrShortScreen> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileInfoScreen()));
 
                                         },
                                         child: Container(

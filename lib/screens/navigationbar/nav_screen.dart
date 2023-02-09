@@ -3,6 +3,8 @@ import 'package:mind_smith/costants/app_color.dart';
 import 'package:mind_smith/costants/sizeConstant.dart';
 import 'package:mind_smith/screens/apoinment/apoinment.dart';
 import 'package:mind_smith/screens/home/home_screen.dart';
+import 'package:mind_smith/screens/my_report/my_reports_screen.dart';
+import 'package:mind_smith/screens/profile/profile_screen.dart';
 import 'package:mind_smith/widgets/app_text.dart';
 
 class NavScreen extends StatefulWidget {
@@ -22,7 +24,7 @@ class _NavScreenState extends State<NavScreen> {
     super.initState();
   }*/
   int currentIndex = 0;
-  List pages = [  const HomeScreen(),  const AponmentScreen(),Container(),Container(),];
+  List pages = [  const HomeScreen(),  const AponmentScreen(),const NyReports(),const ProfileScreen(),];
   @override
   Widget build(BuildContext context) {
     MySize().init(

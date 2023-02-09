@@ -41,6 +41,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   file_picker: ^5.2.5
   image_picker: ^0.8.6
+  order_tracker: ^0.0.2
 
 
 
