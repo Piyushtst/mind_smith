@@ -1,0 +1,52 @@
+class AppImage {
+  static String login = "assets/images/png/login.png";
+  static String email = "assets/images/png/email.png";
+  static String password = "assets/images/png/lok.png";
+  static String facebook = "assets/images/png/facebook.png";
+  static String google = "assets/images/png/google.png";
+  static String linkedIn = "assets/images/png/linkedin.png";
+  static String ios = "assets/images/png/ios.png";
+  static String userName = "assets/images/png/username.png";
+  static String verify = "assets/images/png/verify.png";
+  static String foner = "assets/images/png/fone.png";
+  static String profile = "assets/images/png/profil.png";
+  static String profile5 = "assets/images/png/profile5.png";
+  static String profile4 = "assets/images/png/profile4.png";
+  static String profile3 = "assets/images/png/profile3.png";
+  static String appBarImag = "assets/images/png/appbarimg.png";
+  static String chat = "assets/images/png/msgimg.png";
+  static String notification = "assets/images/png/notification.png";
+  static String profile6 = "assets/images/png/profile6.png";
+  static String clock = "assets/images/png/clock.png";
+  static String profileIcon = "assets/images/png/clock.png";
+  static String report = "assets/images/png/rerport.png";
+  static String test = "assets/images/png/test.png";
+  static String profilescreen = "assets/images/png/profilescreen.png";
+  static String pen = "assets/images/png/pene.png";
+  static String myOrder = "assets/images/png/myorder.png";
+  static String address = "assets/images/png/address.png";
+  static String roundNote = "assets/images/png/roundnote.png";
+  static String logOut = "assets/images/png/logout.png";
+  static String rounDcross = "assets/images/png/roundcross.png";
+  static String whatsapp = "assets/images/png/whatsapp.png";
+  static String book = "assets/images/png/book.png";
+ static String bottomBorder = "assets/images/png/bottomborder.png";
+ static String medicine = "assets/images/png/medicine.png";
+ static String medicine1 = "assets/images/png/medicine1.png";
+ static String greenRound = "assets/images/png/greenround.png";
+ static String roundSelect = "assets/images/png/roundselect.png";
+ static String firstConsultation = "assets/images/png/Firstconsultation.png";
+ static String chatProfile = "assets/images/png/chatprofile.png";
+ static String chatBg = "assets/images/png/chatbg.png";
+ static String doc = "assets/images/png/doc.png";
+ static String send = "assets/images/png/send.png";
+ static String profile1 = "assets/images/png/profile1.png";
+ static String multiply = "assets/images/png/multiply.png";
+ static String order = "assets/images/png/order.png";
+ static String ven = "assets/images/png/ven.png";
+ static String star = "assets/images/png/star.png";
+ static String filter = "assets/images/png/filter.png";
+ static String sort = "assets/images/png/sort.png";
+
+
+}

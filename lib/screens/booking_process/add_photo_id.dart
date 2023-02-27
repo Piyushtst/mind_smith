@@ -1,9 +1,19 @@
+import 'dart:io';
+import 'package:calendar_view/calendar_view.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mind_smith/costants/app_color.dart';
+import 'package:mind_smith/costants/app_images.dart';
 import 'package:mind_smith/costants/sizeConstant.dart';
+import 'package:mind_smith/screens/payment/confirm_apoinment_screen.dart';
+import 'package:mind_smith/screens/payment/confirm_order_screen.dart';
 import 'package:mind_smith/widgets/app_button.dart';
 import 'package:mind_smith/widgets/app_text.dart';
+import 'package:mind_smith/widgets/date_picker.dart';
+import 'package:mind_smith/widgets/sheets_and_dilogs.dart';
+
+
 
 class AddPhotoID extends StatefulWidget {
   const AddPhotoID({Key? key}) : super(key: key);
@@ -15,33 +25,11 @@ class AddPhotoID extends StatefulWidget {
 class _AddPhotoIDState extends State<AddPhotoID> {
   bool isVisible = false;
   String dropdownvalue = 'dropdownvalue';
-  List<String> items = [
-    'Document 1',
-    'Document 3',
-    'Document 3',
-    'Document 4',
-    'Document 5',
-  ];
-
-
+  List<String> items = ['Document 1', 'Document 3', 'Document 3', 'Document 4', 'Document 5',];
+  FilePickerResult? result;
+  File? uploadedFile;
   DateTime? selectedDate;
-  void presentDatePicker() {
-    showDatePicker(
-      initialEntryMode: DatePickerEntryMode.calendar,
 
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2020),
-        lastDate: DateTime.now())
-        .then((pickedDate) {
-      if (pickedDate == null) {
-        return ;
-      }
-      setState(() {
-        selectedDate = pickedDate;
-      });
-    });
-  }
 @override
   Widget build(BuildContext context) {
     MySize().init(
@@ -93,10 +81,10 @@ class _AddPhotoIDState extends State<AddPhotoID> {
                       //height:MySize.size48 ,
                       decoration: BoxDecoration(
                         border: Border.all(color: textFieldBorderColor),
-                        borderRadius: BorderRadius.circular(18),
+                        borderRadius: BorderRadius.circular(14),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(16.00), vertical: MySize.getScaledSizeWidth(8.00)),
+                        padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(16.00), vertical: MySize.getScaledSizeWidth(0.00)),
                         child: DropdownButton(
                           borderRadius: BorderRadius.circular(10),
                           underline: Container(),
@@ -125,21 +113,24 @@ class _AddPhotoIDState extends State<AddPhotoID> {
                       ),
                     ),
                     Space.height(16),
-                    Container(
-                      //height:MySize.size48 ,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: textFieldBorderColor),
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(16.00), vertical: MySize.getScaledSizeWidth(25.00)),
-                        child: InkWell(
-                          onTap: () async{
-                            FilePickerResult? result = await FilePicker.platform.pickFiles(
-                             // type: FileType.custom,
-                             // allowedExtensions: ['jpg', 'pdf', 'doc'],
-                            );
-                          },
+                    InkWell(
+                      onTap: () async{
+                        result = await FilePicker.platform.pickFiles(
+                          type: FileType.custom,
+                          allowedExtensions: ['jpg', 'pdf', 'doc'],
+                        );
+                        List<File> files = result!.paths.map((path) => File(path!)).toList();
+                        uploadedFile = files[0];
+                        setState(() {});
+                      },
+                      child: Container(
+                        //height:MySize.size48 ,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: textFieldBorderColor),
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(16.00), vertical: MySize.getScaledSizeWidth(18.00)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -156,8 +147,8 @@ class _AddPhotoIDState extends State<AddPhotoID> {
                               ),
                             ],
                           ),
-                        ),
 
+                        ),
                       ),
                     ),
                     Space.height(6),
@@ -181,9 +172,9 @@ class _AddPhotoIDState extends State<AddPhotoID> {
                 btnText: "Submit",
                 bttxtColor: primaryWhite,
                 bgColor: primaryColor,
-                onTap: () {
-                  presentDatePicker();
-
+                onTap: () async{
+                  Navigator.pop(context);
+                  await FirstConsultation(context);
                 }),
           ),
           Space.height(24),
@@ -192,94 +183,419 @@ class _AddPhotoIDState extends State<AddPhotoID> {
     );
   }
 
+  /*Future FirstConsultation(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)), //this right here
+            child: Container(
+              height: MySize.size340, //MySize.getScaledSizeHeight(335.00)
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(24.00)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Space.height(24),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Expanded(child: SizedBox()),
+                        Center(
+                          child: Image(
+                            image:  AssetImage(AppImage.firstConsultation),
+                            height: MySize.size80,
+                            width: MySize.size80,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              alignment: Alignment.topRight,
+                              child: Image(
+                                image:  AssetImage(AppImage.rounDcross),
+                                height: MySize.size20,
+                                width: MySize.size20,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Space.height(24),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPhotoID()));
+                      },
+                      child: AppText1(
+                        text: "First consultation",
+                        size: 16.0,
+                        txtColor: blk,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Space.height(14),
+                    FittedBox(
+                      child: AppText1(
+                        text: "This is your first consultation, hence it\n should be\nat least 45 min long",
+                        size: 14.0,
+                        txtColor: blk,
+                        fontWeight: FontWeight.w400,
+                        txtAlign: TextAlign.center,
+                        maxLine: 3,
+                      ),
+                    ),
+                    Space.height(24),
+                    AppButton(
+                        btnText: "Proceed",
+                        bttxtColor: primaryWhite,
+                        bgColor: primaryColor,
+                        onTap: () async{
+                          Navigator.pop(context);
+                          await SelectDate(context);
+                          // BookNow(context);
+                        }),
+                    Space.height(24),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+  }
+
+  Future SelectDate(BuildContext context) {
+    var radioSelected = 1;
+    late String radioValue;
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return Dialog(
+                insetPadding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(24.00)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)), //this right here
+                child: Expanded(
+                  child: Container(
+                    height: MySize.size582,
+                    // width: double.maxFinite, //MySize.getScaledSizeHeight(335.00)
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(24.00)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Space.height(24),
+                          AppText1(
+                            text: "Select Date",
+                            size: 16.0,
+                            txtColor: blk,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          Space.height(28),
+                          const PickDate(),
+                          //Space.height(28),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Radio(
+                                value: 1,
+                                groupValue: radioSelected,
+                                activeColor: greyColor,
+                                onChanged: (value) {
+                                  setState(() {
+                                    radioSelected = value!;
+                                    radioValue = 'male';
+                                  });
+                                },
+                              ),
+                              AppText1(
+                                text: "Not-Available",
+                                size: 14.0,
+                                txtColor: blk,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ],
+                          ),
+                          Space.height(16),
+                          AppButton(
+                              btnText: "Next",
+                              bttxtColor: primaryWhite,
+                              bgColor: primaryColor,
+                              onTap: () async{
+                                Navigator.pop(context);
+                                await SlotBook(context);
+                                //BookNow(context);
+                                //Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPhotoID()));
+                              }),
+                          Space.height(24),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        });
+  }
+
+  String isGreen = "1";
+
+  Future SlotBook(BuildContext context) {
+    var radioSelected = 1;
+    late String radioVal;
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return Dialog(
+                insetPadding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(24.00), vertical: MySize.getScaledSizeHeight(70.00)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)), //this right here
+                child: Expanded(
+                  child: Container(
+                    //height: MySize.size550,
+                    width: double.infinity, //MySize.getScaledSizeHeight(335.00)
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: MySize.getScaledSizeWidth(24.00)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Space.height(24),
+                          AppText1(
+                            text: "Select time",
+                            size: 16.0,
+                            txtColor: blk,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          Space.height(28),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isGreen = "1";
+                                    });
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(bottom: MySize.getScaledSizeWidth(12.00)),
+                                    // height: 300,
+                                    width: MySize.size150,
+                                    decoration: BoxDecoration(
+                                      color: isGreen == "1" ? yelowShade : Colors.white,
+                                      border: Border.all(color: textFieldBorderColor),
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: MySize.getScaledSizeWidth(8.00),
+                                      ),
+                                      child: Center(
+                                        child: AppText1(
+                                          text: "15 Min",
+                                          size: 16.0,
+                                          txtColor: blk,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isGreen = "2";
+                                    });
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: MySize.getScaledSizeWidth(16.00), bottom: MySize.getScaledSizeWidth(12.00)),
+                                    // height: 300,
+                                    width: MySize.size150,
+                                    decoration: BoxDecoration(
+                                      color: isGreen == "2" ? yelowShade : Colors.white,
+                                      border: Border.all(color: textFieldBorderColor),
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: MySize.getScaledSizeWidth(8.00),
+                                      ),
+                                      child: Center(
+                                        child: AppText1(
+                                          text: "30 Min",
+                                          size: 16.0,
+                                          txtColor: blk,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isGreen = "3";
+                                    });
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(bottom: MySize.getScaledSizeWidth(8.00)),
+                                    // height: 300,
+                                    width: MySize.size150,
+                                    decoration: BoxDecoration(
+                                      color: isGreen == "3" ? yelowShade : Colors.white,
+                                      border: Border.all(color: textFieldBorderColor),
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: MySize.getScaledSizeWidth(8.00),
+                                      ),
+                                      child: Center(
+                                        child: AppText1(
+                                          text: "45 Min",
+                                          size: 16.0,
+                                          txtColor: blk,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isGreen = "4";
+                                    });
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: MySize.getScaledSizeWidth(16.00), bottom: MySize.getScaledSizeWidth(4.00)),
+                                    // height: 300,
+                                    width: MySize.size150,
+                                    decoration: BoxDecoration(
+                                      color: isGreen == "4" ? yelowShade : Colors.white,
+                                      border: Border.all(color: textFieldBorderColor),
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: MySize.getScaledSizeWidth(8.00),
+                                      ),
+                                      child: Center(
+                                        child: AppText1(
+                                          text: "60 Min",
+                                          size: 16.0,
+                                          txtColor: blk,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Space.height(15),
+                          const Divider(color: textFieldBorderColor, height: 0.5, thickness: 1),
+                          Space.height(24),
+                          AppText1(
+                            text: "Available Slots",
+                            size: 16.0,
+                            txtColor: blk,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          Space.height(24),
+                          Expanded(
+                            child: Container(
+                              height: MySize.size350,
+                              child:DayView(
+                                controller: EventController(),
+                                eventTileBuilder: (date, events, boundry, start, end) {
+                                  return Container();
+                                },
+                                fullDayEventBuilder: (events, date) {
+                                  return Container();
+                                },
+                                showVerticalLine: true,
+                                showLiveTimeLineInAllDays: true,
+                                //minDay: DateTime(1990),
+                                //maxDay: DateTime(2050),
+                                initialDay: DateTime(2023),
+                                heightPerMinute: 0.7,
+                                eventArranger: const SideEventArranger(),
+                                onEventTap: (events, date) => print(events),
+                                onDateLongPress: (date) => print(date),
+                              ),
+                            ),
+                          ),
+                          Space.height(24),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Radio(
+                                value: 1,
+                                groupValue: radioSelected,
+                                activeColor: greyColor,
+                                onChanged: (value) {
+                                  setState(() {
+                                    radioSelected = value!;
+                                    radioVal = 'male';
+                                  });
+                                },
+                              ),
+                              AppText1(
+                                text: "Not-Available",
+                                size: 14.0,
+                                txtColor: blk,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ],
+                          ),
+                          AppButton(
+                              btnText: "Book Slot Now",
+                              bttxtColor: primaryWhite,
+                              bgColor: primaryColor,
+                              onTap: () {
+                                Get.to(() => const AppoinmentConfirmedScreen());
+                                //BookNow(context);
+                                //Navigator.push(context, MaterialPageRoute(builder: (context) => const AddPhotoID()));
+                              }),
+                          Space.height(24),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        });
+  }*/
 }
 
-/*class CommonDropDown extends StatelessWidget {
-  final String? title;
-  final List<String>? itemList;
-  final String? dropDownValue;
-  final String? validationMessage;
-  final String? hintText;
-  final double? topPadding;
-  final Color? fillColor;
-  final bool isTransparentColor;
-  final bool needValidation;
-  final String? Function(String?)? validator;
-
-  final void Function(String?)? onChange;
-
-  const CommonDropDown({
-    Key? key,
-    this.title,
-    this.itemList,
-    this.dropDownValue,
-    this.onChange,
-    this.validator,
-    this.validationMessage,
-    this.topPadding,
-    this.hintText,
-    this.fillColor,
-    this.isTransparentColor = false,
-    this.needValidation = false,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: topPadding ?? 0),
-        if (title != null)
-          AppText1(
-            text: "$title",
-            size: 14.0,
-            txtColor: blk,
-            fontWeight: FontWeight.w400,
-          ),
-        if (title != null) const SizedBox(height: 10),
-        DropdownButtonFormField(
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 13,
-            color: blk,
-          ),
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: fillColor ?? primaryWhite,
-            hintText: hintText,
-            contentPadding: const EdgeInsets.only(top: 12, bottom: 12, right: 20, left: 20),
-            border: OutlineInputBorder(borderSide: BorderSide(color: isTransparentColor ? blk : blk), borderRadius: BorderRadius.circular(8)),
-            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: isTransparentColor ? blk : blk), borderRadius: BorderRadius.circular(8)),
-            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: isTransparentColor ? blk : blk), borderRadius: BorderRadius.circular(8)),
-            errorBorder: OutlineInputBorder(borderSide: BorderSide(color: isTransparentColor ? blk : blk), borderRadius: BorderRadius.circular(8)),
-          ),
-          validator: needValidation == true
-              ? (v) {
-                  if (v == null) {
-                    return "$validationMessage is required";
-                  }
-                  return null;
-                }
-              : null,
-          isDense: true,
-          onChanged: onChange,
-          value: dropDownValue,
-          items: itemList!.map((selectedType) {
-            return DropdownMenuItem(
-              value: selectedType,
-              child: Text(
-                selectedType,
-                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: blk),
-              ),
-            );
-          }).toList(),
-          isExpanded: true,
-          icon: const Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: blk,
-          ),
-        ),
-      ],
-    );
-  }
-}*/

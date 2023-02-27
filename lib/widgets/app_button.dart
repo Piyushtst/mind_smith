@@ -39,7 +39,7 @@ class _AppButtonState extends State<AppButton> {
         decoration: BoxDecoration(
             color:  widget.bgColor ?? primaryColor,
             borderRadius: BorderRadius.circular(16)),
-        height: 48,//56
+        height: 48,
         width: widget.width ?? double.infinity,
         child: Center(
             child: FittedBox(
@@ -160,6 +160,7 @@ class _AppButton2State extends State<AppButton2> {
         }
       },
       child: Container(
+
         decoration: BoxDecoration(
             border: Border.all(color:widget.bdrColor??textFieldBorderColor),
             color:  widget.bgColor ?? primaryColor,
@@ -172,6 +173,64 @@ class _AppButton2State extends State<AppButton2> {
                 text: widget.btnText,
                 size: 16,
                 txtColor:widget.bttxtColor?? blk,
+                fontWeight: FontWeight.w600,
+                fontStyle: FontStyle.normal,
+                fontFamily: '',
+              ),
+            )),
+      ),
+    );
+  }
+}
+
+
+
+class AppButton3 extends StatefulWidget {
+  final String btnText;
+  Function? onTap;
+  Color? bttxtColor;
+  Color? bgColor;
+  double? width;
+  double? height;
+
+  AppButton3(
+      {Key? key,
+        required this.btnText,
+        this.onTap,
+        this.bttxtColor,
+        this.width,
+        this.height,
+        this.bgColor})
+      : super(key: key);
+
+  @override
+  State<AppButton3> createState() => _AppButton3State();
+}
+
+class _AppButton3State extends State<AppButton3> {
+  bool isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        if (widget.onTap != null) {
+          widget.onTap!();
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            //border: Border.all(color: textFieldBorderColor),
+            color:  widget.bgColor ?? primaryColor,
+            borderRadius: BorderRadius.circular(16)),
+        height: 48,
+        width: widget.width ?? double.infinity,
+        child: Center(
+            child: FittedBox(
+              child: AppText1(
+                text: widget.btnText,
+                size: 16,
+                txtColor: primaryWhite,
                 fontWeight: FontWeight.w600,
                 fontStyle: FontStyle.normal,
                 fontFamily: '',

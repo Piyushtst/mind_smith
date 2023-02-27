@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mind_smith">
    <application
-        android:label="mind_smith"
+        android:label="MindSmith"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/mind_smith_logo">
         <activity
             android:name=".MainActivity"
             android:exported="true"

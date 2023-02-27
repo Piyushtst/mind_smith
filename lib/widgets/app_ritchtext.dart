@@ -155,3 +155,7 @@ class AppRitchText3 extends StatelessWidget {
     ); //getternsleted(context,key)
   }
 }
+
+
+
+

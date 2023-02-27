@@ -88,3 +88,46 @@ class AppText1 extends StatelessWidget {
 
 
 
+
+
+
+class AppText12 extends StatelessWidget {
+  final String text;
+  Color? txtColor;
+  double? size;
+  FontWeight? fontWeight;
+  FontStyle? fontStyle;
+  String? fontFamily;
+  TextAlign? txtAlign;
+  TextOverflow? textOverflow;
+  int? maxLine;
+
+  AppText12({
+    Key? key,
+    required this.text,
+    this.txtColor,
+    this.size,
+    this.fontWeight,
+    this.txtAlign,
+    this.maxLine,
+    this.textOverflow,
+    this.fontStyle,
+    this.fontFamily,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+        text,
+        maxLines: maxLine ?? 2,
+        style: GoogleFonts.firaSans(textStyle: TextStyle(
+          fontFamily: fontFamily,
+          fontStyle: FontStyle.normal,
+          color: greyShade,
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+        ),),
+        textAlign: txtAlign); //getternsleted(context,key)
+  }
+}
+

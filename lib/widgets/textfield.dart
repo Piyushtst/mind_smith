@@ -162,7 +162,7 @@ Widget AppTextField({
           fontWeight: hintTextBold ? FontWeight.w400 : FontWeight.normal,
           fontSize: hintFontSize ?? 14,
         ),
-        border: const OutlineInputBorder(),
+        border:  OutlineInputBorder(borderRadius: BorderRadius.circular(borderRadius)),
       ),
       // inputFormatters: inputFormatters ?? [],
       inputFormatters: numberTextFormatter

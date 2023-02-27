@@ -1,19 +1,39 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:kiwi/kiwi.dart';
+import 'package:mind_smith/app/routes/app_pages.dart';
 import 'screens/splash_screen.dart';
 
+KiwiContainer? app;
+GetStorage? box;
 void main() {
-  runApp(const MyApp()/*DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => MyApp(), // Wrap your app
-  ),*/);
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+ // runApp(const MyApp());
+  runApp( GetMaterialApp(
+    //home: MyApp(),
+    debugShowCheckedModeBanner: false,
+    initialRoute: AppPages.INITIAL,
+    getPages: AppPages.routes,
+  ));
+ /* WidgetsFlutterBinding.ensureInitialized();
+  GetMaterialApp(
+    //title: "Application",
+    theme: ThemeData(
+      //fontFamily: 'Satoshi',
+    ),
+    debugShowCheckedModeBanner: false,
+    initialRoute: AppPages.INITIAL,
+    getPages: AppPages.routes,
+  );*/
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
+/*class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +42,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(),
+      //home: const SplashScreen(),
     );
   }
-}
+}*/
 
 

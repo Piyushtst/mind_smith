@@ -85,6 +85,7 @@ class MySize {
   static double? size180;
   static double? size330;
   static double? size300;
+  static double? size329;
   static double? size293;
 
   static double? size315;
@@ -103,6 +104,7 @@ class MySize {
   static double? size255;
   static double? size258;
   static double? size500;
+  static double? size700;
 
   static double? size268;
   static double? size176;
@@ -274,6 +276,9 @@ class MySize {
   static double? size405;
   static double? size425;
   static double? size582;
+  static double? size585;
+  static double? size590;
+  static double? size595;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
